@@ -5,7 +5,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
   {path: "/", element: <Recipes />},
-  {path: "/recipes/:id", element: <Recipe />},
+  {path: "/recipes", element: <Recipes />},
   {path: "/recipes/:id", element: <Recipe />}
 ]);
 
