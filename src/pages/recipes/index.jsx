@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import noRecipes from "../../assets/images/undraw_no_data_re_kwbl.svg";
 import spinner from "../../assets/images/gears-spinner.svg"
-
+import Navbar from "../../components/navbar";
 
 
 export default function Recipes() {
@@ -36,35 +36,39 @@ export default function Recipes() {
     useEffect(searchRecipes, []);
 
     return (
-        <Container sx={{ my: '2rem' }}>
-            <TextField
-                fullWidth
-                id="outlined-basic"
-                label="Enter a keyword to search recipes and hit Enter"
-                variant="outlined"
-                value={searchItem}
-                onChange={(event) => setSearchItem(event.
-                    target.value)}
-                onKeyDown={event => event.key == 'Enter' &&
-                    searchRecipes()}
-            />
-            <Grid sx={{ mt: '1rem' }} container spacing={3}>
-                {loading ? (
-                    <Container sx={{
-                        display: 'flex',
-                        justifyContent: 'center'
-                    }}>
-                        <img src={spinner} width="25%" />
-                    </Container>
-                ) : recipes.length > 0 ? recipes.map((recipe) => <RecipeItem key={recipe._id} title={recipe.title} image={recipe.image} id={recipe._id}/>) : (
-                    <Container sx={{
-                        display: 'flex',
-                        justifyContent: 'center'
-                    }}>
-                        <img src={noRecipes} width="25%" />
-                    </Container>
-                )}
-            </Grid>
-        </Container>
+        <>
+            <Navbar />
+            <Container sx={{ my: '2rem' }}>
+                <TextField
+                    fullWidth
+                    id="outlined-basic"
+                    label="Enter a keyword to search recipes and hit Enter"
+                    variant="outlined"
+                    value={searchItem}
+                    onChange={(event) => setSearchItem(event.
+                        target.value)}
+                    onKeyDown={event => event.key == 'Enter' &&
+                        searchRecipes()}
+                />
+                <Grid sx={{ mt: '1rem' }} container spacing={3}>
+                    {loading ? (
+                        <Container sx={{
+                            display: 'flex',
+                            justifyContent: 'center'
+                        }}>
+                            <img src={spinner} width="25%" />
+                        </Container>
+                    ) : recipes.length > 0 ? recipes.map((recipe) => <RecipeItem key={recipe._id} title={recipe.title} image={recipe.image} id={recipe._id} />) : (
+                        <Container sx={{
+                            display: 'flex',
+                            justifyContent: 'center'
+                        }}>
+                            <img src={noRecipes} width="25%" />
+                        </Container>
+
+                    )}
+                </Grid>
+            </Container>
+        </>
     );
 }
